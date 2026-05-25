@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thiệp Chúc Mừng 3D Gộp Trang</title>
+    <title>Thiệp Chúc Mừng 3D Đặc Biệt</title>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
@@ -23,7 +23,7 @@
         .card-container {
             position: relative;
             width: 350px;
-            height: 480px;
+            height: 500px;
             perspective: 1500px;
             cursor: pointer;
         }
@@ -35,7 +35,7 @@
             height: 100%;
             background: radial-gradient(circle, #fff0f3 0%, #ffe3e8 100%);
             box-sizing: border-box;
-            padding: 30px 25px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 10px 10px 30px rgba(0,0,0,0.15);
             display: flex;
@@ -60,10 +60,10 @@
             align-items: center;
             border-radius: 15px;
             box-shadow: 5px 10px 25px rgba(255, 65, 108, 0.3);
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
             box-sizing: border-box;
-            padding: 30px;
+            padding: 20px;
             z-index: 2;
             transform-origin: left center;
             transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 1s ease;
@@ -77,14 +77,14 @@
             pointer-events: none;
         }
 
-        /* Nội dung gộp từ trang trái cũ: Số 27+ */
+        /* Số 27+ */
         .highlight-27 {
-            font-size: 75px;
+            font-size: 70px;
             font-weight: 900;
             background: linear-gradient(135deg, #e60026 0%, #ff4d6d 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 0 0 5px 0;
+            margin: 0;
             padding: 0;
             position: relative;
             z-index: 5;
@@ -98,10 +98,10 @@
         }
 
         .sub-text {
-            font-size: 14px;
+            font-size: 13px;
             color: #ff4d6d;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
@@ -109,22 +109,56 @@
         h2 {
             color: #d90429;
             margin: 0 0 10px 0;
-            font-size: 20px;
+            font-size: 19px;
         }
 
-        p {
+        /* Khung chứa hiệu ứng gõ chữ */
+        .typing-container {
             color: #555;
             line-height: 1.6;
-            font-size: 15px;
+            font-size: 14.5px;
             margin: 5px 0;
+            min-height: 120px; /* Giữ khung không bị nhảy giật khi chữ chạy */
+            text-align: center;
+        }
+
+        /* Dòng chữ quan tâm theo thời gian */
+        .time-alert-text {
+            font-weight: bold;
+            color: #6a0dad;
+            font-size: 14px;
+            margin-top: 12px;
+            min-height: 22px;
         }
 
         .stamp {
-            font-size: 50px;
-            margin-bottom: 10px;
+            font-size: 45px;
+            margin-bottom: 5px;
         }
 
-        /* Ngôi sao lấp lánh bố trí xung quanh trang nội dung */
+        /* Cấu trúc đồng hồ đếm ngược trên bìa */
+        .countdown-box {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            font-size: 14px;
+        }
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-weight: bold;
+        }
+        .countdown-num {
+            font-size: 18px;
+            color: #ffee55;
+        }
+
+        /* Ngôi sao lấp lánh */
         .sparkle-star {
             position: absolute;
             color: #ffb703;
@@ -135,17 +169,17 @@
             z-index: 2;
         }
 
-        .s1 { top: 10%; left: 15%; font-size: 24px; animation-delay: 0s; }
-        .s2 { top: 15%; right: 15%; font-size: 18px; animation-delay: 0.5s; }
-        .s3 { bottom: 15%; left: 12%; font-size: 28px; animation-delay: 1.2s; }
-        .s4 { bottom: 12%; right: 15%; font-size: 16px; animation-delay: 0.8s; }
+        .s1 { top: 8%; left: 12%; font-size: 24px; animation-delay: 0s; }
+        .s2 { top: 12%; right: 12%; font-size: 18px; animation-delay: 0.5s; }
+        .s3 { bottom: 12%; left: 10%; font-size: 28px; animation-delay: 1.2s; }
+        .s4 { bottom: 8%; right: 12%; font-size: 16px; animation-delay: 0.8s; }
 
         @keyframes blink {
             0%, 100% { transform: scale(0.3) rotate(0deg); opacity: 0; }
             50% { transform: scale(1.2) rotate(180deg); opacity: 1; filter: drop-shadow(0 0 5px #ffb703); }
         }
 
-        /* Hạt bụi hồng bay lơ lửng bên trong tấm thiệp */
+        /* Hạt bụi hồng bay lơ lửng */
         .dust {
             position: absolute;
             width: 4px;
@@ -156,12 +190,12 @@
             opacity: 0.5;
         }
 
-        .d1 { left: 15%; animation-duration: 3.5s; }
+        .d1 { left: 12%; animation-duration: 3.5s; }
         .d2 { left: 45%; animation-duration: 4.5s; animation-delay: 1s; width: 5px; height: 5px; }
-        .d3 { left: 80%; animation-duration: 4s; animation-delay: 0.5s; }
+        .d3 { left: 85%; animation-duration: 4s; animation-delay: 0.5s; }
 
         @keyframes floatUp {
-            0% { transform: translateY(480px) scale(0); opacity: 0; }
+            0% { transform: translateY(500px) scale(0); opacity: 0; }
             50% { opacity: 0.7; }
             100% { transform: translateY(-20px) scale(1.2); opacity: 0; }
         }
@@ -183,63 +217,126 @@
             <div class="sub-text">✨ Good Luck ✨</div>
 
             <h2>Đây Là Món Quà Cho Bạn 🌸</h2>
-            <p>
-                Chúc bạn bước vào kỳ thi với thật nhiều bình tĩnh,
-                tự tin và may mắn. Mong rằng mọi cố gắng suốt thời gian qua
-                sẽ được đền đáp bằng kết quả xứng đáng và cánh cửa đại học
-                mà mình hằng mong ước.
-            </p>
-            <p style="font-weight: bold; color: #d90429; margin-top: 10px;">Hãy thể hiện bản thân thật tốt!</p>
+            
+            <div class="typing-container" id="textGiaoDien"></div>
+            <div class="time-alert-text" id="timeAlertBox"></div>
         </div>
 
         <div class="card-cover">
             <div class="stamp">💌</div>
             <span>Mở Thiệp Ra Nhé!</span>
-            <span style="font-size: 13px; font-weight: normal; margin-top: 20px; opacity: 0.8;">
-                (Click để mở)
-            </span>
+            <span style="font-size: 12px; font-weight: normal; margin-top: 5px; opacity: 0.8;">(Click để mở)</span>
+            
+            <div class="countdown-box">
+                <div class="countdown-item"><span class="countdown-num" id="cd-d">00</span><span>Ngày</span></div>
+                <div class="countdown-item"><span class="countdown-num" id="cd-h">00</span><span>Giờ</span></div>
+                <div class="countdown-item"><span class="countdown-num" id="cd-m">00</span><span>Phút</span></div>
+                <div class="countdown-item"><span class="countdown-num" id="cd-s">00</span><span>Giây</span></div>
+            </div>
         </div>
     </div>
 
     <script>
-        const card = document.getElementById('biThu');
+        // ==========================================
+        // CẤU HÌNH NGÀY THI (Thay đổi ngày ở đây nếu muốn)
+        // ==========================================
+        const targetDate = new Date("June 25, 2026 00:00:00").getTime();
 
-        // Điều khiển đóng mở thiệp và hiệu ứng pháo hoa
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.querySelector(".countdown-box").innerHTML = "🔥 ĐẾN GIỜ RA TRẬN RỒI! CỐ LÊN! 🔥";
+                return;
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("cd-d").innerText = d < 10 ? "0" + d : d;
+            document.getElementById("cd-h").innerText = h < 10 ? "0" + h : h;
+            document.getElementById("cd-m").innerText = m < 10 ? "0" + m : m;
+            document.getElementById("cd-s").innerText = s < 10 ? "0" + s : s;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // ==========================================
+        // LỜI CHÚC & LOGIC XỬ LÝ THEO GIỜ
+        // ==========================================
+        const targetText = "Chúc bạn bước vào kỳ thi với thật nhiều bình tĩnh, tự tin và may mắn. Mong rằng mọi cố gắng suốt thời gian qua sẽ được đền đáp bằng kết quả xứng đáng và cánh cửa Đại học mà mình hằng mong ước. Hãy thể hiện bản thân thật tốt nhé! 💪🌸";
+        
+        function getTimeAlert() {
+            const currentHour = new Date().getHours();
+            if (currentHour >= 22 || currentHour < 4) {
+                return "🌙 Muộn rồi đó, đọc xong nhớ đi ngủ sớm để giữ sức khỏe tốt nhất nha!";
+            } else if (currentHour >= 4 && currentHour < 11) {
+                return "☀️ Buổi sáng tràn đầy năng lượng và ôn bài thật hiệu quả nhé!";
+            } else if (currentHour >= 11 && currentHour < 14) {
+                return "🍙 Đến giờ nghỉ trưa rồi, nhớ ăn uống đầy đủ và nghỉ ngơi xíu nha!";
+            } else {
+                document.getElementById("biThu").style.height = "480px"; // Thu nhỏ bớt chiều cao nếu khung này trống
+                return "✨ Cố gắng từng chút một, quả ngọt đang chờ bạn ở phía trước!";
+            }
+        }
+
+        // ==========================================
+        // ĐIỀU KHIỂN ĐÓNG MỞ + PHÁO HOA + GÕ CHỮ
+        // ==========================================
+        const card = document.getElementById('biThu');
+        let hasTyped = false; // Đảm bảo hiệu ứng gõ chữ chỉ chạy một lần duy nhất khi mở
+
         card.addEventListener('click', function () {
             const isOpening = !this.classList.contains('open');
             this.classList.toggle('open');
 
             if (isOpening) {
-                // Pháo hoa tâm giữa tấm thiệp
-                confetti({
-                    particleCount: 180,
-                    spread: 120,
-                    origin: { y: 0.6 }
-                });
+                // Bắn pháo hoa tung tóe khắp màn hình
+                confetti({ particleCount: 160, spread: 100, origin: { y: 0.6 } });
+                confetti({ particleCount: 80, angle: 60, spread: 70, origin: { x: 0, y: 0.8 } });
+                confetti({ particleCount: 80, angle: 120, spread: 70, origin: { x: 1, y: 0.8 } });
 
-                // Pháo hoa bắn góc trái điện thoại
-                confetti({
-                    particleCount: 100,
-                    angle: 60,
-                    spread: 80,
-                    origin: { x: 0, y: 0.8 }
-                });
-
-                // Pháo hoa bắn góc phải điện thoại
-                confetti({
-                    particleCount: 100,
-                    angle: 120,
-                    spread: 80,
-                    origin: { x: 1, y: 0.8 }
-                });
+                // Kích hoạt hiệu ứng gõ chữ
+                if (!hasTyped) {
+                    hasTyped = true;
+                    let i = 0;
+                    const textContainer = document.getElementById("textGiaoDien");
+                    
+                    function typeWriter() {
+                        if (i < targetText.length) {
+                            textContainer.innerHTML += targetText.charAt(i);
+                            i++;
+                            setTimeout(typeWriter, 35); // Tốc độ gõ chữ (ms)
+                        } else {
+                            // Khi gõ xong lời chúc chính thì gõ tiếp lời nhắn theo giờ
+                            const alertText = getTimeAlert();
+                            let j = 0;
+                            const alertContainer = document.getElementById("timeAlertBox");
+                            
+                            function typeAlert() {
+                                if (j < alertText.length) {
+                                    alertContainer.innerHTML += alertText.charAt(j);
+                                    j++;
+                                    setTimeout(typeAlert, 30);
+                                }
+                            }
+                            typeAlert();
+                        }
+                    }
+                    setTimeout(typeWriter, 800); // Chờ cánh cửa lật ra một chút rồi mới bắt đầu gõ chữ
+                }
             }
         });
 
-        // Tạo hiệu ứng tim bay liên tục dưới nền màn hình
+        // ==========================================
+        // HIỆU ỨNG TIM BAY DƯỚI NỀN
+        // ==========================================
         function createHeart() {
             const heart = document.createElement('div');
             heart.innerHTML = '❤';
-
             heart.style.position = 'fixed';
             heart.style.left = Math.random() * window.innerWidth + 'px';
             heart.style.bottom = '-20px';
@@ -261,11 +358,8 @@
                 heart.style.opacity = 0;
             }, 50);
 
-            setTimeout(() => {
-                heart.remove();
-            }, 4500);
+            setTimeout(() => { heart.remove(); }, 4500);
         }
-
         setInterval(createHeart, 350);
     </script>
 </body>
